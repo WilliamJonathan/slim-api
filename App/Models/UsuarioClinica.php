@@ -9,8 +9,8 @@ class Usuarioclinica extends Model
 {
 	protected $table = 'usuariosclinica';
 	protected $fillable = [
-		'nome_fantasia', 'email', 'cnpj', 'cep', 'rua', 'bairro', 'cidade', 'uf',
-		'senha', 'ocupacao', 'updated_at', 'created_at', 'token'
+		'nome_fantasia', 'email', 'cnpj', 'cep', 'rua','num_local', 'bairro', 'cidade', 'uf',
+		'senha', 'ocupacao', 'updated_at', 'created_at', 'token',
 	];
 
 }
