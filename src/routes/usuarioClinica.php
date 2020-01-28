@@ -83,9 +83,9 @@ $app->group('/api/v1', function() {
 		$dados = $request->getParsedBody();
 		$email = $dados['email'] ?? null;
 
-		$usuariosclinica = Usuarioclinica::where('email', $email)->first();
+		$usuariosclinica = Usuarioclinica::where('email', $email)->count();
 
-		/*if ($usuariosclinica >= 1) {
+		if ($usuariosclinica >= 1) {
 			return $response->withJson([
 				//$usuariosclinica
 				'status'=> 'email_existente'
@@ -94,7 +94,7 @@ $app->group('/api/v1', function() {
 			return $response->withJson([
 				'status' => 'email_valido'
 			]);
-		}*/
+		}
 		return $response->withJson($usuariosclinica);
 	});
 
