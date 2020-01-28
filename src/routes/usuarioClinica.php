@@ -78,6 +78,26 @@ $app->group('/api/v1', function() {
 
 	});
 
+	// Recupera email via post e verifica se já esta cadastrado
+	$this->post('/usuarioclinica/lista/emailexistente', function($request, $response){
+		$dados = $request->getParsedBody();
+		$email = $dados['email'] ?? null;
+
+		$usuariosclinica = Usuarioclinica::where('email', $email)->first();
+
+		/*if ($usuariosclinica >= 1) {
+			return $response->withJson([
+				//$usuariosclinica
+				'status'=> 'email_existente'
+			]);
+		}else{
+			return $response->withJson([
+				'status' => 'email_valido'
+			]);
+		}*/
+		return $response->withJson($usuariosclinica);
+	});
+
 	// Recupera token para o email de login via post
 	$this->post('/usuarioclinica/lista/token', function($request, $response){
 		$dados = $request->getParsedBody();
