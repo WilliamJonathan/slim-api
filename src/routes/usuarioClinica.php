@@ -98,6 +98,26 @@ $app->group('/api/v1', function() {
 		return $response->withJson($usuariosclinica);
 	});
 
+	// Recupera CNPJ via post e verifica se já esta cadastrado
+	$this->post('/usuarioclinica/lista/cnpjexistente', function($request, $response){
+		$dados = $request->getParsedBody();
+		$cnpj = $dados['cnpj'] ?? null;
+
+		$usuariosclinica = Usuarioclinica::where('cnpj', $cnpj)->count();
+
+		if ($usuariosclinica >= 1) {
+			return $response->withJson([
+				//$usuariosclinica
+				'status'=> 'cnpj_existente'
+			]);
+		}else{
+			return $response->withJson([
+				'status' => 'cnpj_valido'
+			]);
+		}
+		return $response->withJson($usuariosclinica);
+	});
+
 	// Recupera token para o email de login via post
 	$this->post('/usuarioclinica/lista/token', function($request, $response){
 		$dados = $request->getParsedBody();
