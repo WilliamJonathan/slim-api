@@ -9,7 +9,6 @@ class UsuarioApp extends Model
 {
 	protected $table = 'usuarioapp';
 	protected $fillable = [
-		'nome', 'senha', 'email', 'cep',
-		'updated_at', 'created_at', 'token'
+		'nome', 'sobrenome', 'telefone', 'email', 'senha', 'token', 'updated_at', 'created_at'
 	];
 }
