@@ -13,7 +13,8 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     '/api/v1/usuarioclinica/adiciona/status', '/api/v1/usuarioclinica/lista', 
     '/api/v1/usuarioapp/cadastro','/api/v1/usuarioapp/autentica/login', 
     '/api/v1/usuarioclinica/lista/emailexistente',
-    '/usuarioclinica/lista/cnpjexistente'],
+    '/api/v1/usuarioclinica/lista/cnpjexistente', '/api/v1/usuarioapp/gerar/token',
+    '/api/v1/usuarioapp/adiciona/token'],
     "secure " => false,
     "secret" =>  $container->get('settings')['secretKey']
 ]));
