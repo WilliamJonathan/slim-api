@@ -48,7 +48,9 @@ $app->group('/api/v1', function() {
 	
 		$usuarioapp = UsuarioApp::where('email', $email)->first()
 		->update($dados);
-		return $response->withJson($usuarioapp);
+		return $response->withJson([
+			'chave' => $usuarioapp
+		]);
 	});
 
 	//recupera login do app e loga usuario
