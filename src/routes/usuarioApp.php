@@ -8,6 +8,26 @@ use \Firebase\JWT\JWT;
 // Rotas para produtos
 $app->group('/api/v1', function() {
 
+	// Recupera email via post e verifica se já esta cadastrado
+	$this->post('/usuarioapp/lista/emailexistente', function($request, $response){
+		$dados = $request->getParsedBody();
+		$email = $dados['email'] ?? null;
+
+		$usuarioapp = UsuarioApp::where('email', $email)->count();
+
+		if ($usuarioapp >= 1) {
+			return $response->withJson([
+				//$usuariosclinica
+				'status'=> 'email_existente'
+			]);
+		}else{
+			return $response->withJson([
+				'status' => 'email_valido'
+			]);
+		}
+		return $response->withJson($usuariosclinica);
+	});
+
 	//Adiciona um usuario no banco de dados
 	$this->post('/usuarioapp/cadastro', function($request, $response){
 		$dados = $request->getParsedBody();
