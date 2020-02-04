@@ -106,7 +106,7 @@ $app->group('/api/v1', function() {
 			//recuperar dados
 			//Capsule::UsuarioApp()
 			//$usuarioapp = UsuarioApp::where('email', $email)->first()->update($dados);
-			$usuarioapp = UsuarioApp::where('email', $email)->first()->update(array('logado'=>'S'));
+			$usuarioapp = UsuarioApp::where('email', $email)->first()->update(array('logado'=>$dados['logado']));
 			return $response->withJson([
 				//$usuarioapp
 				'status' => 'verificado'
