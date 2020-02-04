@@ -73,6 +73,26 @@ $app->group('/api/v1', function() {
 		]);
 	});
 
+	// Recupera token para o email de login via post
+	$this->post('/usuarioapp/lista/token', function($request, $response){
+		$dados = $request->getParsedBody();
+		$email = $dados['email'] ?? null;
+		$senha = $dados['senha'] ?? null;
+
+		$usuarioapp = UsuarioApp::where('email', $email)->first();
+
+		if (!is_null($usuarioapp) && (md5($senha) === $usuarioapp->senha)) {
+			return $response->withJson([
+				$usuarioapp
+			]);
+		}else{
+			return $response->withJson([
+				'status' => 'erro'
+			]);
+		}
+		//return $response->withJson($usuariosclinica);
+	});
+
 	//recupera login do app e loga usuario
 	$this->post('/usuarioapp/autentica/login', function($request, $response) {
 		$dados = $request->getParsedBody();
@@ -82,11 +102,14 @@ $app->group('/api/v1', function() {
 
 		$usuarioapp = UsuarioApp::where('email', $email)->first();
 
-		if (!is_null($usuarioapp) && ($senha) == $usuarioapp->senha) {
+		if (!is_null($usuarioapp) && (md5($senha) === $usuarioapp->senha)) {
 			//recuperar dados
-
+			//Capsule::UsuarioApp()
+			//$usuarioapp = UsuarioApp::where('email', $email)->first()->update($dados);
+			$usuarioapp = UsuarioApp::where('email', $email)->first()->update(array('logado'=>'S'));
 			return $response->withJson([
-				$usuarioapp
+				//$usuarioapp
+				'status' => 'verificado'
 			]);
 
 		}else{
