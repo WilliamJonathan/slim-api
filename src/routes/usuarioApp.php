@@ -103,9 +103,6 @@ $app->group('/api/v1', function() {
 		$usuarioapp = UsuarioApp::where('email', $email)->first();
 
 		if (!is_null($usuarioapp) && (md5($senha) === $usuarioapp->senha)) {
-			//recuperar dados
-			//Capsule::UsuarioApp()
-			//$usuarioapp = UsuarioApp::where('email', $email)->first()->update($dados);
 			$usuarioapp = UsuarioApp::where('email', $email)->first()->update(array('logado'=>$dados['logado']));
 			return $response->withJson([
 				//$usuarioapp
