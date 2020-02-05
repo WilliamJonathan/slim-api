@@ -81,9 +81,9 @@ $app->group('/api/v1', function() {
 
 		$usuarioapp = UsuarioApp::where('email', $email)->first();
 
-		if (!is_null($usuarioapp) && (md5($senha) === $usuarioapp->senha)) {
+		if (!is_null($usuarioapp) && $senha == $usuarioapp->senha) {
 			return $response->withJson([
-				$usuarioapp
+				'status' => $usuarioapp['token']
 			]);
 		}else{
 			return $response->withJson([
@@ -102,7 +102,7 @@ $app->group('/api/v1', function() {
 
 		$usuarioapp = UsuarioApp::where('email', $email)->first();
 
-		if (!is_null($usuarioapp) && (md5($senha) === $usuarioapp->senha)) {
+		if (!is_null($usuarioapp) && $senha == $usuarioapp->senha) {
 			$usuarioapp = UsuarioApp::where('email', $email)->first()->update(array('logado'=>$dados['logado']));
 			return $response->withJson([
 				//$usuarioapp
