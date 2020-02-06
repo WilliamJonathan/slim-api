@@ -116,4 +116,24 @@ $app->group('/api/v1', function() {
 		}
 
 	});
+
+	// Recupera email e verifica se ta logado
+	$this->post('/usuarioapp/verifica/login', function($request, $response){
+		$dados = $request->getParsedBody();
+		$email = $dados['email'] ?? null;
+		//$logado = $dados['logado'] ?? null;
+
+		$usuarioapp = UsuarioApp::where('email', $email)->first();
+
+		if (!is_null($usuarioapp) && $usuarioapp->logado == 'S') {
+			return $response->withJson([
+				'status' => 'on'
+			]);
+		}else{
+			return $response->withJson([
+				'status' => 'off'
+			]);
+		}
+		//return $response->withJson($usuariosclinica);
+	});
 });
