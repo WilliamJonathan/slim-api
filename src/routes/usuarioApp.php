@@ -68,6 +68,7 @@ $app->group('/api/v1', function() {
 	
 		$usuarioapp = UsuarioApp::where('email', $email)->first()
 		->update($dados);
+
 		if ($usuarioapp == true) {
 			$usuarioapp = UsuarioApp::where('email', $email)->first();
 				return $response->withJson([
