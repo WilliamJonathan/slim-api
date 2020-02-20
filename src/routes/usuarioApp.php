@@ -71,9 +71,9 @@ $app->group('/api/v1', function() {
 
 		if ($usuarioapp == true) {
 			$usuarioapp = UsuarioApp::where('email', $email)->first();
-				return $response->withJson([
+				return $response->withJson(
 				$usuarioapp
-			]);
+			);
 		}
 		return $response->withJson([
 			'chave' => $usuarioapp
