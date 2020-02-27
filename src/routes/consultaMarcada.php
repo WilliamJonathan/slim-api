@@ -33,8 +33,8 @@ $app->group('/api/v1', function() {
 	});
 
 	//busca uma consulta pendente de confirmação
-	$this->get('/usuarioclinica/lista/consultasppendentes/{codigo}', function($request, $response, $args){
-		$usuariosclinica = ConsultaAguardaConfirmar::where('id_clinica', '=', $args['codigo'])
+	$this->get('/usuarioclinica/lista/consultaspendentes/{codigo}', function($request, $response, $args){
+		$usuariosclinica = ConsultaAguardaConfirmar::where('id_paciente', '=', $args['codigo'])
 		->orderBy('updated_at', 'DESC')->get();
 		return $response->withJson($usuariosclinica);
 	});
