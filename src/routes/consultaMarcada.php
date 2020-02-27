@@ -9,7 +9,7 @@ use \Firebase\JWT\JWT;
 // Rotas para produtos
 $app->group('/api/v1', function() {
 	//Adiciona uma solicitação de consulta no banco de dados. Colocar na rota app depois
-	$this->post('/usuarioclinica/solicitaconsulta', function($request, $response){
+	$this->post('/usuarioapp/solicitaconsulta', function($request, $response){
 		$dados = $request->getParsedBody();
 		$usuariosclinica = SolicitacaoConsulta::create($dados);
 		return $response->withJson($usuariosclinica);
