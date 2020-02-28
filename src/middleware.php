@@ -6,7 +6,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "header" => "X-Token",
     "regexp" => "/(.*)/",
     "path" => "/api", /* or ["/api", "/admin"] */
-    "ignore" => ["/usuarioclinica/lista/token","/api/v1/usuarioclinica/adiciona", 
+    "ignore" => ["/api/v1/usuarioclinica/lista/token","/api/v1/usuarioclinica/adiciona", 
     "/api/v1/clinica/gerar/token", "/api/v1/usuarioclinica/adiciona/token", 
     "/api/v1/usuarioclinica/lista/token",
     '/api/v1/usuarioclinica/solicitacaodeconsulta', '/api/v1/usuarioclinica/enviadata',
@@ -15,7 +15,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     '/api/v1/usuarioclinica/lista/cnpjexistente', '/api/v1/usuarioapp/gerar/token',
     '/api/v1/usuarioapp/adiciona/token','/api/v1/usuarioapp/lista/emailexistente',
     '/api/v1/usuarioapp/lista/token', '/api/v1/usuarioapp/solicitaconsulta',
-    'api/v1/usuarioclinica/lista/consultaspendentes'],
+    'api/v1/usuarioclinica/lista/consultaspendentes', ],
     "secure " => false,
     "secret" =>  $container->get('settings')['secretKey']
 ]));
